@@ -6,7 +6,7 @@ import data_cleaning
 
 # Clean test and training data
 print("Data set is cleaning...")
-data_cleaning.process(documents_folder="Data/training-data/", processed_documents_folder="Data/processed-training-data/")
+data_cleaning.process(documents_folder="Data/training-data", processed_documents_folder="Data/processed-training-data")
 data_cleaning.process(documents_folder="Data/test-data/", processed_documents_folder="Data/processed-test-data/")
 # Make the training-data set ready to feed into the LSTM algorithm
 print("Data set is building...")

@@ -3,7 +3,7 @@ import numpy as np
 import buid_dataset
 from tensorflow.contrib import rnn
 
-
+ 
 print("Data set is building...")
 training_data, train_paragraph_label, train_document_label, train_document_num_paragraph, vocabulary_size, num_words = buid_dataset.run("Data/processed-training-data/","Data/training-class")
 testing_data, test_paragraph_label, test_document_label, test_document_num_paragraph, _,  _ = buid_dataset.run("Data/processed-test-data/","Data/test-class", num_words = num_words)
@@ -25,14 +25,14 @@ def metrics(y, y_pred):
     for index, element_y in enumerate(y):
         if element_y == 1:
             if y_pred[index] == 0:
-                fn+= 1
+                fn += 1
             else:
-                tp+= 1
+                tp += 1
         else:
             if y_pred[index] == 0:
-                tn+= 1
+                tn += 1
             else:
-                fp+= 1
+                fp += 1
     return tp, tn, fp, fn
 
 

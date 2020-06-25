@@ -4,7 +4,7 @@ from random import shuffle
 import collections
 
 
-def run(data_folder, data_label_file, num_words = 0, shuffle_data = False):
+def run(data_folder, data_label_file, num_words=0, shuffle_data=False):
     # Build the vocabulary and assign a unique number to each word
     vocabulary_dict = word_encoding(data_folder)
     # Encode paragraphs based on the built vocabulary

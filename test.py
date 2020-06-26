@@ -91,7 +91,7 @@ with tf.Session() as sess:
     saver = tf.train.Saver()
     saver.restore(sess, "Model/model.ckpt")
     last_batch = len(training_data) % batch_size
-    training_steps = (len(training_data) / batch_size) + 1
+    training_steps = (len(training_data) // batch_size) + 1
     train_paragraph_label_pred_total = []
     test_paragraph_label_pred_total = []
     for step in range(training_steps):
@@ -110,7 +110,7 @@ with tf.Session() as sess:
         acc, train_paragraph_label_pred = sess.run([accuracy,tf.round(tf.sigmoid(prediction))], feed_dict={X: X_batch, Y: Y_batch})
         train_paragraph_label_pred_total = np.append(train_paragraph_label_pred_total, train_paragraph_label_pred)
         accuracy_train += acc
-    accuracy_train /= training_steps
+    accuracy_train //= training_steps
     train_document_label_pred = majority_voting(train_document_num_paragraph, train_paragraph_label_pred_total)
     tp, tn, fp, fn = metrics(train_document_label, train_document_label_pred)
     print("----- Train results ----")
@@ -120,7 +120,7 @@ with tf.Session() as sess:
     print ("False Negative = " + str(fn))
 
     last_batch = len(testing_data) % batch_size
-    testing_steps = (len(testing_data) / batch_size) + 1
+    testing_steps = (len(testing_data) // batch_size) + 1
     for step in range(testing_steps):
         X_batch = testing_data[(step * batch_size):((step + 1) * batch_size)]
         Y_batch = test_paragraph_label[(step * batch_size):((step + 1) * batch_size)]
